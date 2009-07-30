@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# last updated : 2009/07/23 15:58:28 JST
+# last updated : 2009/07/30 15:56:27 JST
 # 	$Id: tenki.pl,v 1.13 2009/07/19 07:01:09 yama Exp yama $	
 
 # weather.com が登録しないとAPI使えないみたいなので、自力で別のを作ることに。
@@ -284,6 +284,8 @@ sub weather  {
 		"light showers rain mist" => "にわか雨(弱)",
 		"showers rain mist"       => "にわか雨",
 		"Heavy showers rain"	  => "つよいにわか雨",
+		"thunderstorm rain"		  => "雷雨",
+		"heavy thunderstorm rain" => "つよい雷雨",
 		"Rain"					  => "雨",
 		"light rain"			  => "小雨",
 		"light rain mist"		  => "小雨",

@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# last updated : 2009/07/30 15:56:27 JST
+# last updated : 2009/08/04 15:15:24 JST
 # 	$Id: tenki.pl,v 1.13 2009/07/19 07:01:09 yama Exp yama $	
 
 # weather.com が登録しないとAPI使えないみたいなので、自力で別のを作ることに。
@@ -224,7 +224,7 @@ sub wind_dir {
 # 風速 mph → m/s
 sub  wind_speed {
 	my $var = shift;
-	return ($var * 1069) / 3600;
+	return $var * 0.44704;
 }
 
 # 日付変換。
@@ -269,38 +269,40 @@ sub pws_weather {
 sub weather  {
 	my $var =shift;
 	my %tenki = (
-		"Clear"					  => "晴れ",
-		"Cloudy"				  => "曇り",
-		"Flurries"				  => "flurries",
-		"Fog"					  => "霧",
-		"Hazy"					  => "hazy",
-		"Mostly Cloudy"			  => "ほとんど曇り",
-		"Mostly Sunny"			  => "だいたい晴れ",
-		"Partly Cloudy"			  => "ところにより曇り",
-		"Partly Sunny"			  => "ところにより晴れ",
-		"Overcast"				  => "曇り(どんよりした空模様)",
-		"Scattered Clouds"		  => "ときおり曇り（雲がチラホラある時）",
-		"light showers rain"	  => "かるいにわか雨",
-		"light showers rain mist" => "にわか雨(弱)",
-		"showers rain mist"       => "にわか雨",
-		"Heavy showers rain"	  => "つよいにわか雨",
-		"thunderstorm rain"		  => "雷雨",
-		"heavy thunderstorm rain" => "つよい雷雨",
-		"Rain"					  => "雨",
-		"light rain"			  => "小雨",
-		"light rain mist"		  => "小雨",
-		"light rain drizzle mist" => "小雨／霧雨",
-		"light drizzle mist"      => "かるい霧雨",
-		"Heavy Rain"			  => "大雨",
-		"Sleet"					  => "みぞれ（雪まじりの雨）",
-		"Snow"					  => "雪",
-		"Sunny"					  => "快晴",
-		"Thunderstorms"			  => "雷雨",
-		"Unknown"				  => "不明",
-		"Drizzle"				  => "霧雨",
-		"Snow"					  => "雪",
-		"Light Snow"			  => "小雪",
-		"Heavy Snow"			  => "大雪"
+		"Clear"						   => "晴れ",
+		"Cloudy"					   => "曇り",
+		"Flurries"					   => "flurries",
+		"Fog"						   => "霧",
+		"haze"						   => "もや、かすみ",
+		"Mostly Cloudy"				   => "ほとんど曇り",
+		"Mostly Sunny"				   => "だいたい晴れ",
+		"Partly Cloudy"				   => "ところにより曇り",
+		"Partly Sunny"				   => "ところにより晴れ",
+		"Overcast"					   => "曇り(どんよりした空模様)",
+		"Scattered Clouds"			   => "ときおり曇り（雲がチラホラある時）",
+		"light showers rain"		   => "弱いにわか雨",
+		"light showers rain mist"	   => "弱いにわか雨と霞",
+		"showers rain mist"			   => "にわか雨",
+		"Heavy showers rain"		   => "強いにわか雨",
+		"thunderstorm rain"			   => "雷雨",
+		"light thunderstorm rain"	   => "弱い雷雨",
+		"light thunderstorm rain mist" => "弱い雷雨と霞",
+		"heavy thunderstorm rain"	   => "強い雷雨",
+		"Rain"						   => "雨",
+		"light rain"				   => "小雨",
+		"light rain mist"			   => "小雨",
+		"light rain drizzle mist"	   => "小雨／霧雨",
+		"light drizzle mist"		   => "かるい霧雨",
+		"Heavy Rain"				   => "大雨",
+		"Sleet"						   => "みぞれ（雪まじりの雨）",
+		"Snow"						   => "雪",
+		"Sunny"						   => "快晴",
+		"Thunderstorms"				   => "雷雨",
+		"Unknown"					   => "不明",
+		"Drizzle"					   => "霧雨",
+		"Snow"						   => "雪",
+		"Light Snow"				   => "小雪",
+		"Heavy Snow"				   => "大雪"
 		);
 	if ($tenki{$var}) {
 		return $tenki{$var};

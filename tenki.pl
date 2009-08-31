@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# last updated : 2009/08/04 15:15:24 JST
+# last updated : 2009/08/31 14:07:02 JST
 # 	$Id: tenki.pl,v 1.13 2009/07/19 07:01:09 yama Exp yama $	
 
 # weather.com が登録しないとAPI使えないみたいなので、自力で別のを作ることに。
@@ -143,6 +143,12 @@ sub airport {
 		printf ("風　　　　　: %.2f m/s, %sの風\n", $kaze, $kazemuki);
 	}
 	printf ("気温　　　　: %s℃\n", $airport_hash->{temp_c});
+	if ($opt_debug) {
+		my $taikan = windchill($airport_hash->{temp_c},
+				     $airport_hash->{relative_humidity},
+					 wind_speed($airport_hash->{wind_mph}));
+		printf ("体感温度* 　: %.1f℃\n", $taikan);
+	  }
 	unless ( $airport_hash->{heat_index_c} eq "NA") {
 		printf ("体感温度　　: %s℃\n", $airport_hash->{heat_index_c});
 	} else {
@@ -193,7 +199,7 @@ sub pws {
 # 体感温度
 sub windchill {
 	# 引数は、温度、湿度、風速。
-	return 37 - (37 - $_[0]) / (0.68 - 0.0014 * $_[1] + 1/(1.76 + 1.4*($_[2]^0.75))) - 0.29 * $_[0] * (1 - $_[1] / 100);
+	return 36 - (36 - $_[0]) / (0.68 - 0.0014 * $_[1] + 1/(1.76 + 1.4*($_[2]^0.75))) - 0.29 * $_[0] * (1 - $_[1] / 100);
 }
 
 # 風向き
@@ -282,7 +288,8 @@ sub weather  {
 		"Scattered Clouds"			   => "ときおり曇り（雲がチラホラある時）",
 		"light showers rain"		   => "弱いにわか雨",
 		"light showers rain mist"	   => "弱いにわか雨と霞",
-		"showers rain mist"			   => "にわか雨",
+		"showers rain"			       => "にわか雨",
+		"showers rain mist"			   => "にわか雨と霧",
 		"Heavy showers rain"		   => "強いにわか雨",
 		"thunderstorm rain"			   => "雷雨",
 		"light thunderstorm rain"	   => "弱い雷雨",
@@ -293,7 +300,9 @@ sub weather  {
 		"light rain mist"			   => "小雨",
 		"light rain drizzle mist"	   => "小雨／霧雨",
 		"light drizzle mist"		   => "かるい霧雨",
-		"Heavy Rain"				   => "大雨",
+		"heavy rain"				   => "大雨",
+		"heavy rain mist"			   => "大雨と霧",
+		"rain mist"				       => "雨と霧",
 		"Sleet"						   => "みぞれ（雪まじりの雨）",
 		"Snow"						   => "雪",
 		"Sunny"						   => "快晴",

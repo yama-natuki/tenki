@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# last updated : 2010/01/12 14:14:13 JST
+# last updated : 2012/07/25 18:02:01 JST
 # 	$Id: tenki.pl,v 1.14 2010/09/09 17:06:53 yama Exp yama $	
 
 # weather.com が登録しないとAPI使えないみたいなので、自力で別のを作ることに。
@@ -375,3 +375,7 @@ tenki [options]
 
 
 =cut
+
+# Local Variables:
+# tab-width: 4
+# End:

@@ -1,6 +1,6 @@
 #!/usr/bin/perl
-# last updated : 2009/08/31 14:07:02 JST
-# 	$Id: tenki.pl,v 1.13 2009/07/19 07:01:09 yama Exp yama $	
+# last updated : 2010/01/12 14:14:13 JST
+# 	$Id: tenki.pl,v 1.14 2010/09/09 17:06:53 yama Exp yama $	
 
 # weather.com が登録しないとAPI使えないみたいなので、自力で別のを作ることに。
 # wunderground.com を利用。
@@ -298,6 +298,7 @@ sub weather  {
 		"Rain"						   => "雨",
 		"light rain"				   => "小雨",
 		"light rain mist"			   => "小雨",
+		"light rain snow mist"		   => "小雨、雪まじり。霧",
 		"light rain drizzle mist"	   => "小雨／霧雨",
 		"light drizzle mist"		   => "かるい霧雨",
 		"heavy rain"				   => "大雨",
@@ -310,7 +311,10 @@ sub weather  {
 		"Unknown"					   => "不明",
 		"Drizzle"					   => "霧雨",
 		"Snow"						   => "雪",
-		"Light Snow"				   => "小雪",
+		"light snow"				   => "小雪",
+		"light snow rain"			   => "小雪まじりの雨",
+		"light snow mist"			   => "小雪と霧",
+		"light snow rain mist"		   => "小雪まじりの雨と霧",
 		"Heavy Snow"				   => "大雪"
 		);
 	if ($tenki{$var}) {
